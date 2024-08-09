@@ -20,9 +20,7 @@ const NavBar = () => {
 
   return (
     <nav className="navbar-container">
-      <Link href={"/"}>
-        <ImBug />
-      </Link>
+      <Link href={"/"}>Shoei</Link>
       <ul className="flex space-x-6">
         {links.map((link) => (
           <Link
