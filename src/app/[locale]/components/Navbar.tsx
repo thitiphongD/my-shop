@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { ImBug } from "react-icons/im";
 import PublicNavigationLocaleSwitcher from "./PublicNavigationLocaleSwitcher";
+import "../css/navbar.css";
 
 const NavBar = () => {
   const currentPath = usePathname();
@@ -18,7 +19,7 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className="flex items-center space-x-6 border-b mb-5 px-5 h-14">
+    <nav className="navbar-container">
       <Link href={"/"}>
         <ImBug />
       </Link>
