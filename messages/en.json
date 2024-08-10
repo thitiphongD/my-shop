@@ -1,5 +1,7 @@
 {
-  "HomePage": {
-    "title": "Hello world!"
+  "Translate": {
+    "title": "Hello world!",
+    "all_products": "All Products",
+    "helmet": "Helmet"
   }
 }

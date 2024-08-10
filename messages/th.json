@@ -1,5 +1,7 @@
 {
-  "HomePage": {
-    "title": "หวัดชาวโลก!"
+  "Translate": {
+    "title": "หวัดชาวโลก!",
+    "all_products": "สินค้าทั้งหมด",
+    "helmet": "หมวกกันน็อค"
   }
 }

@@ -3,15 +3,18 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { ImBug } from "react-icons/im";
+import { GoPerson } from "react-icons/go";
 import PublicNavigationLocaleSwitcher from "./PublicNavigationLocaleSwitcher";
+import "../css/navbar.css";
+import { useTranslations } from "next-intl";
 
 const NavBar = () => {
   const currentPath = usePathname();
+  const t = useTranslations("Translate");
 
   const links = [
-    { label: "Home", href: "/" },
-    { label: "Issues", href: "/issues" },
+    { label: `${t("all_products")}`, href: "/products" },
+    { label: `${t("helmet")}`, href: "/helmet" },
   ];
 
   const isActive = (href: string) => {
@@ -22,24 +25,24 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="flex items-center space-x-6 border-b mb-5 px-5 h-14">
-      <Link href={"/"}>
-        <ImBug />
-      </Link>
-      <ul className="flex space-x-6">
+    <nav className="navbar-container">
+      <ul className="flex space-x-2">
         {links.map((link) => (
           <Link
             key={link.href}
             href={link.href}
             className={`${
-              isActive(link.href) ? "text-red-900" : "text-zinc-500"
-            } hover:text-zinc-800 transition-colors`}
+              isActive(link.href) ? "activePath" : "nav-menu"
+            } transition-colors`}
           >
             {link.label}
           </Link>
         ))}
       </ul>
-      <PublicNavigationLocaleSwitcher />
+      <div className="flex items-center space-x-4">
+        <GoPerson />
+        <PublicNavigationLocaleSwitcher />
+      </div>
     </nav>
   );
 };
