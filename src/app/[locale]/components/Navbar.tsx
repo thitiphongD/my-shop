@@ -10,10 +10,10 @@ import "../css/navbar.css";
 import { useTranslations } from "next-intl";
 import CartComponent from "./CartComponent";
 import { CartProvider } from "../contexts/CartContext";
-import { IoBagOutline } from "react-icons/io5";
 import { useSession, signOut } from "next-auth/react";
-import { Divider, Dropdown, Flex, MenuProps, Modal, Space } from "antd";
+import { Button, Divider, Dropdown, Flex, MenuProps, Modal, Space } from "antd";
 import { GoSignOut } from "react-icons/go";
+import { IoBagOutline } from "react-icons/io5";
 
 const NavBar = () => {
   const currentPath = usePathname();
@@ -48,12 +48,23 @@ const NavBar = () => {
 
   const items: MenuProps["items"] = [
     {
-      key: "1",
+      key: 1,
       label: (
         <Flex align="center" gap={8} onClick={showModal}>
           <GoSignOut />
-          Sign out
+          {t("sign_out")}
         </Flex>
+      ),
+    },
+    {
+      key: 2,
+      label: (
+        <Link href={`/profile`}>
+          <Flex align="center" gap={8}>
+            <GoPerson />
+            Profile
+          </Flex>
+        </Link>
       ),
     },
   ];
@@ -82,14 +93,16 @@ const NavBar = () => {
             <>
               <Dropdown menu={{ items }}>
                 <Space>
-                  <span>Hello {session?.user?.email}</span>
+                  <span>
+                    {t("hello")} {session?.user?.email}
+                  </span>
                   <Divider />
                 </Space>
               </Dropdown>
 
               <CartProvider>
-                <CartComponent />
                 <IoBagOutline />
+                <CartComponent />
               </CartProvider>
             </>
           ) : (
@@ -103,14 +116,19 @@ const NavBar = () => {
       </nav>
 
       <Modal
-        title="Basic Modal"
+        title={t("sign_out")}
         open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
+        width={300}
+        footer={[
+          <Button key="back" onClick={handleCancel}>
+            {t("back")}
+          </Button>,
+          <Button key="submit" type="primary" onClick={handleOk}>
+            {t("confirm")}
+          </Button>,
+        ]}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <span>{t("title_sign_out")}</span>
       </Modal>
     </>
   );

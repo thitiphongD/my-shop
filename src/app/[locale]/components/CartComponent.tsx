@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useCart } from "../contexts/CartContext";
+import { Badge } from "antd";
 
 const CartComponent: React.FC = () => {
   const { cart, isLoading, error } = useCart();
@@ -12,11 +13,8 @@ const CartComponent: React.FC = () => {
   return (
     <div>
       {cart.map((item) => (
-        <div
-          key={item.id}
-          className="absolute w-5 h-5 right-[80px] top-[6px] rounded-full bg-blue-900 flex items-center justify-center"
-        >
-          <span className="text-xs text-white">{item.quantity}</span>
+        <div key={item.id}>
+          <Badge count={item.quantity}></Badge>
         </div>
       ))}
     </div>

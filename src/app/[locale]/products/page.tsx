@@ -13,7 +13,6 @@ const AllProductsPage = (props: Props) => {
         <ProductComponent
           product={{ id: "1", name: "Example Product", price: 9.99 }}
         />
-        <CartComponent />
       </main>
     </CartProvider>
   );
