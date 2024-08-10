@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { GoPerson } from "react-icons/go";
+import { GiFullMotorcycleHelmet } from "react-icons/gi";
 import PublicNavigationLocaleSwitcher from "./PublicNavigationLocaleSwitcher";
 import "../css/navbar.css";
 import { useTranslations } from "next-intl";
@@ -26,6 +27,7 @@ const NavBar = () => {
 
   return (
     <nav className="navbar-container">
+      <GiFullMotorcycleHelmet />
       <ul className="flex space-x-2">
         {links.map((link) => (
           <Link
