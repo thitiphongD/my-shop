@@ -8,6 +8,9 @@ import { GiFullMotorcycleHelmet } from "react-icons/gi";
 import PublicNavigationLocaleSwitcher from "./PublicNavigationLocaleSwitcher";
 import "../css/navbar.css";
 import { useTranslations } from "next-intl";
+import CartComponent from "./CartComponent";
+import { CartProvider } from "../contexts/CartContext";
+import { IoBagOutline } from "react-icons/io5";
 
 const NavBar = () => {
   const currentPath = usePathname();
@@ -27,7 +30,6 @@ const NavBar = () => {
 
   return (
     <nav className="navbar-container">
-      <GiFullMotorcycleHelmet />
       <ul className="flex space-x-2">
         {links.map((link) => (
           <Link
@@ -41,7 +43,12 @@ const NavBar = () => {
           </Link>
         ))}
       </ul>
+      <GiFullMotorcycleHelmet />
       <div className="flex items-center space-x-4">
+        <CartProvider>
+          <CartComponent />
+          <IoBagOutline className="relative" />
+        </CartProvider>
         <GoPerson />
         <PublicNavigationLocaleSwitcher />
       </div>

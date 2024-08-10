@@ -1,4 +1,3 @@
-// app/components/CartComponent.tsx
 "use client";
 
 import React from "react";
@@ -12,12 +11,12 @@ const CartComponent: React.FC = () => {
 
   return (
     <div>
-      <h2>Shopping Cart</h2>
       {cart.map((item) => (
-        <div key={item.id}>
-          <span>{item.name}</span>
-          <span>Quantity: {item.quantity}</span>
-          <span>Price: ${item.price * item.quantity}</span>
+        <div
+          key={item.id}
+          className="absolute w-5 h-5 right-[112px] top-[6px] rounded-full bg-blue-900 flex items-center justify-center"
+        >
+          <span className="text-xs text-white">{item.quantity}</span>
         </div>
       ))}
     </div>
