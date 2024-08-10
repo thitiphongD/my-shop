@@ -31,7 +31,7 @@ export default async function RootLayout({
         <SessionProvider session={session}>
           <NextIntlClientProvider messages={messages}>
             <NavBarWrapper locale={locale} />
-            <main>{children}</main>
+            <main className="px-[300px]">{children}</main>
           </NextIntlClientProvider>
         </SessionProvider>
       </body>

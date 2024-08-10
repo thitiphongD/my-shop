@@ -96,7 +96,7 @@ export const authOptions: AuthOptions = {
       return session;
     },
     async redirect({ baseUrl }) {
-      return `${baseUrl}/profile`;
+      return `${baseUrl}/`;
     },
   },
 };

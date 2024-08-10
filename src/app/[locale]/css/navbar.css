@@ -1,5 +1,5 @@
 .navbar-container {
-  @apply flex items-center space-x-6 border-b mb-5 px-5 h-14 justify-between;
+  @apply flex items-center space-x-6 border-b mb-5 px-5 h-14 justify-between px-[300px];
 }
 
 .nav-menu {

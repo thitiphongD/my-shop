@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { GoPerson } from "react-icons/go";
 import { GiFullMotorcycleHelmet } from "react-icons/gi";
 import PublicNavigationLocaleSwitcher from "./PublicNavigationLocaleSwitcher";
@@ -11,10 +11,28 @@ import { useTranslations } from "next-intl";
 import CartComponent from "./CartComponent";
 import { CartProvider } from "../contexts/CartContext";
 import { IoBagOutline } from "react-icons/io5";
+import { useSession, signOut } from "next-auth/react";
+import { Divider, Dropdown, Flex, MenuProps, Modal, Space } from "antd";
+import { GoSignOut } from "react-icons/go";
 
 const NavBar = () => {
   const currentPath = usePathname();
   const t = useTranslations("Translate");
+  const { data: session, status } = useSession();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    signOut({ callbackUrl: "/" });
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   const links = [
     { label: `${t("all_products")}`, href: "/products" },
@@ -28,35 +46,73 @@ const NavBar = () => {
     return currentPath.includes(href);
   };
 
+  const items: MenuProps["items"] = [
+    {
+      key: "1",
+      label: (
+        <Flex align="center" gap={8} onClick={showModal}>
+          <GoSignOut />
+          Sign out
+        </Flex>
+      ),
+    },
+  ];
+
   return (
-    <nav className="navbar-container">
-      <ul className="flex space-x-2">
-        {links.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className={`${
-              isActive(link.href) ? "activePath" : "nav-menu"
-            } transition-colors`}
-          >
-            {link.label}
-          </Link>
-        ))}
-      </ul>
-      <Link href="/">
-        <GiFullMotorcycleHelmet />
-      </Link>
-      <div className="flex items-center space-x-4">
-        <CartProvider>
-          <CartComponent />
-          <IoBagOutline className="relative" />
-        </CartProvider>
-        <Link href="/auth/sign-in">
-          <GoPerson />
+    <>
+      <nav className="navbar-container">
+        <ul className="flex space-x-2">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`${
+                isActive(link.href) ? "activePath" : "nav-menu"
+              } transition-colors`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </ul>
+        <Link href="/">
+          <GiFullMotorcycleHelmet />
         </Link>
-        <PublicNavigationLocaleSwitcher />
-      </div>
-    </nav>
+        <div className="flex items-center space-x-4">
+          {status === "authenticated" && session?.user ? (
+            <>
+              <Dropdown menu={{ items }}>
+                <Space>
+                  <span>Hello {session?.user?.email}</span>
+                  <Divider />
+                </Space>
+              </Dropdown>
+
+              <CartProvider>
+                <CartComponent />
+                <IoBagOutline />
+              </CartProvider>
+            </>
+          ) : (
+            <Link href="/auth/sign-in">
+              <GoPerson />
+            </Link>
+          )}
+
+          <PublicNavigationLocaleSwitcher />
+        </div>
+      </nav>
+
+      <Modal
+        title="Basic Modal"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Modal>
+    </>
   );
 };
 
