@@ -49,7 +49,9 @@ const NavBar = () => {
           <CartComponent />
           <IoBagOutline className="relative" />
         </CartProvider>
-        <GoPerson />
+        <Link href="/auth/sign-in">
+          <GoPerson />
+        </Link>
         <PublicNavigationLocaleSwitcher />
       </div>
     </nav>
