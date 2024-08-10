@@ -43,7 +43,9 @@ const NavBar = () => {
           </Link>
         ))}
       </ul>
-      <GiFullMotorcycleHelmet />
+      <Link href="/">
+        <GiFullMotorcycleHelmet />
+      </Link>
       <div className="flex items-center space-x-4">
         <CartProvider>
           <CartComponent />

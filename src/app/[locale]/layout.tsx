@@ -4,6 +4,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import "./css/globals.css";
 import NavBar from "./components/Navbar";
+import { getServerSession } from "next-auth";
+import SessionProvider from "./components/Provider/SessionProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,14 +22,17 @@ export default async function RootLayout({
   params: { locale: string };
 }>) {
   const messages = await getMessages();
+  const session = await getServerSession();
 
   return (
     <html lang={locale}>
       <body className={inter.className}>
-        <NextIntlClientProvider messages={messages}>
-          <NavBar />
-          <main>{children}</main>
-        </NextIntlClientProvider>
+        <SessionProvider session={session}>
+          <NextIntlClientProvider messages={messages}>
+            <NavBar />
+            <main>{children}</main>
+          </NextIntlClientProvider>
+        </SessionProvider>
       </body>
     </html>
   );
