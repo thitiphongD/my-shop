@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(validation.error.format(), { status: 400 });
     }
 
-    const hashPassword = bcrypt.hashSync(body.password, 10);
+    const hashPassword = await bcrypt.hash(body.password, 10);
 
     const newUser = await prisma.user.create({
       data: { email: body.email, password: hashPassword },

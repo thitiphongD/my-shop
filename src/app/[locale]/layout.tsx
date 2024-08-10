@@ -6,6 +6,7 @@ import "./css/globals.css";
 import NavBar from "./components/Navbar";
 import { getServerSession } from "next-auth";
 import SessionProvider from "./components/Provider/SessionProvider";
+import NavBarWrapper from "./components/NavBarWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,7 +30,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <SessionProvider session={session}>
           <NextIntlClientProvider messages={messages}>
-            <NavBar />
+            <NavBarWrapper locale={locale} />
             <main>{children}</main>
           </NextIntlClientProvider>
         </SessionProvider>

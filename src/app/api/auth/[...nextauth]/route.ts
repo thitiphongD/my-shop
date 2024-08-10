@@ -35,18 +35,18 @@ declare module "next-auth/jwt" {
 
 export const authOptions: AuthOptions = {
   providers: [
-    // GoogleProvider({
-    //   clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string,
-    //   clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET as string,
-    //   profile(profile) {
-    //     return {
-    //       id: profile.sub,
-    //       name: `${profile.given_name} ${profile.family_name}`,
-    //       email: profile.email,
-    //       image: profile.picture,
-    //     };
-    //   },
-    // }),
+    GoogleProvider({
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET as string,
+      profile(profile) {
+        return {
+          id: profile.sub,
+          name: `${profile.given_name} ${profile.family_name}`,
+          email: profile.email,
+          image: profile.picture,
+        };
+      },
+    }),
     CredentialsProvider({
       name: "Credentials",
       credentials: {
