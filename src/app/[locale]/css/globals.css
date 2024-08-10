@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-button {
-  @apply border py-1 px-2;
+button,
+input {
+  @apply border py-1 px-2 rounded-md;
+}
+
+.form-field {
+  @apply mb-4 w-full;
+}
+
+.input-wrapper {
+  @apply relative w-full;
+}
+
+.icon {
+  @apply absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none;
+}
+
+.input-with-icon {
+  @apply w-full pr-10;
+}
+
+.toggle-password-icon {
+  @apply absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer;
+}
+
+.error-message {
+  @apply text-red-700 text-xs font-semibold mt-1 block;
 }
