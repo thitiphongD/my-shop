@@ -6,14 +6,21 @@ import { signUpUserSchema } from "@/app/validation/authValidationSchema";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { MdOutlineMail } from "react-icons/md";
+import useSWR from "swr";
+import useSWRMutation from "swr/mutation";
+import { signUpService } from "../../services/authFetcher";
 
 interface Props {
   onBack: () => void;
 }
+
 type SignUpFormType = z.infer<typeof signUpUserSchema>;
 
 const SignUpForm: React.FC<Props> = ({ onBack }) => {
   const router = useRouter();
+
+  const fetcher = (url: string, data: SignUpFormType) =>
+    signUpService(url, data);
 
   const {
     register,
@@ -26,8 +33,9 @@ const SignUpForm: React.FC<Props> = ({ onBack }) => {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
+      await fetcher("/api/auth/signUp", data);
       reset();
-      router.push(`/auth`);
+      onBack();
     } catch (error) {
       console.log(error);
     }
@@ -66,8 +74,8 @@ const SignUpForm: React.FC<Props> = ({ onBack }) => {
         />
       </div>
 
-      <button onClick={onBack} className="w-full" type="submit">
-        Sign In
+      <button className="w-full" type="submit">
+        Sign Up
       </button>
     </form>
   );
