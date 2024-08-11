@@ -106,7 +106,7 @@ const NavBar = () => {
               </CartProvider>
             </>
           ) : (
-            <Link href="/auth/sign-in">
+            <Link href="/auth">
               <GoPerson />
             </Link>
           )}
