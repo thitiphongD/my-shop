@@ -6,7 +6,7 @@ import { signUpUserSchema } from "@/app/validation/authValidationSchema";
 import { useForm } from "react-hook-form";
 import { MdOutlineMail } from "react-icons/md";
 
-import { signUpService } from "../../services/authFetcher";
+import { signUpService } from "../../services/authService";
 import { Modal } from "antd";
 
 interface Props {
