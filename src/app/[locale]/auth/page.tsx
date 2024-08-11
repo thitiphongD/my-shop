@@ -35,7 +35,7 @@ const AuthPage = () => {
       >
         {formType === AuthFormType.SignIn
           ? "Create account."
-          : "Already have an account? Sign in."}
+          : "Already have an account?"}
       </span>
     </div>
   );

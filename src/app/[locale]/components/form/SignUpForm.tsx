@@ -4,11 +4,10 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signUpUserSchema } from "@/app/validation/authValidationSchema";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
 import { MdOutlineMail } from "react-icons/md";
-import useSWR from "swr";
-import useSWRMutation from "swr/mutation";
+
 import { signUpService } from "../../services/authFetcher";
+import { Modal } from "antd";
 
 interface Props {
   onBack: () => void;
@@ -17,11 +16,6 @@ interface Props {
 type SignUpFormType = z.infer<typeof signUpUserSchema>;
 
 const SignUpForm: React.FC<Props> = ({ onBack }) => {
-  const router = useRouter();
-
-  const fetcher = (url: string, data: SignUpFormType) =>
-    signUpService(url, data);
-
   const {
     register,
     handleSubmit,
@@ -33,13 +27,22 @@ const SignUpForm: React.FC<Props> = ({ onBack }) => {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      await fetcher("/api/auth/signUp", data);
+      await signUpService("/api/auth/signUp", data);
       reset();
-      onBack();
+      SignUpSuccess();
     } catch (error) {
       console.log(error);
     }
   });
+
+  const SignUpSuccess = () => {
+    Modal.success({
+      content: "Sign up Success!!",
+      onOk() {
+        onBack();
+      },
+    });
+  };
 
   return (
     <form className="space-y-3" onSubmit={onSubmit}>
