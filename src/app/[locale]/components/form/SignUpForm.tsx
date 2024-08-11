@@ -77,7 +77,7 @@ const SignUpForm: React.FC<Props> = ({ onBack }) => {
         />
       </div>
 
-      <button className="w-full" type="submit">
+      <button className="w-full auth-btn" type="submit">
         Sign Up
       </button>
     </form>

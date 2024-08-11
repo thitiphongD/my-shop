@@ -71,7 +71,7 @@ const SignInForm = () => {
           Forgot Password?
         </Link>
       </div>
-      <button className="w-full" type="submit">
+      <button className="w-full auth-btn" type="submit">
         Sign In
       </button>
     </form>
