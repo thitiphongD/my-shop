@@ -31,7 +31,7 @@ const FormField: React.FC<FormFieldProps> = ({
         <input
           type={isPasswordVisible && togglePasswordVisibility ? "text" : type}
           placeholder={placeholder}
-          {...register(name, { valueAsNumber })}
+          {...register(name, { valueAsNumber })} // Correctly using register
           id={name}
           aria-required={required}
           className={`input-with-icon ${error ? "border-red-500" : ""}`}

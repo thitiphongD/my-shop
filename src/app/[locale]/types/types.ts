@@ -12,14 +12,14 @@ export type InputType = "text" | "email" | "password" | "number";
 export type ValidFieldNames = keyof FormData;
 
 export type FormFieldProps = {
-  type: string;
+  type: InputType;
   placeholder: string;
-  name: keyof FormData; // Use keyof FormData for the name property
-  register: UseFormRegister<FormData>;
+  name: keyof FormData;
+  register: UseFormRegister<any>;
   error: FieldError | undefined;
   valueAsNumber?: boolean;
   label?: string;
   required?: boolean;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   togglePasswordVisibility?: boolean;
 };

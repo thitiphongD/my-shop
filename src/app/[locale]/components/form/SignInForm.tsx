@@ -7,10 +7,9 @@ import { useForm } from "react-hook-form";
 import React, { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import FormField from "../../components/form/FormField";
+import FormField from "./FormField";
 import { MdOutlineMail } from "react-icons/md";
 import Link from "next/link";
-import { Divider } from "antd";
 
 type SignInFormType = z.infer<typeof loginUserSchema>;
 
@@ -46,39 +45,36 @@ const SignInForm = () => {
   });
 
   return (
-    <>
-      <form className="space-y-3" onSubmit={onSubmit}>
-        <div className="grid col-auto">
-          <FormField
-            type="text"
-            placeholder="Email"
-            name="email"
-            register={register}
-            error={errors.email}
-            label="Email"
-            icon={<MdOutlineMail />}
-          />
-          <FormField
-            type="password"
-            placeholder="Password"
-            name="password"
-            register={register}
-            error={errors.password}
-            label="Password"
-            togglePasswordVisibility={true}
-          />
-        </div>
-        <div className="flex justify-end text-xs">
-          <Link className="text-blue-600" href="/auth/forgot-password">
-            Forgot Password?
-          </Link>
-        </div>
-        <button className="w-full" type="submit">
-          Sign In
-        </button>
-        <Divider />
-      </form>
-    </>
+    <form className="space-y-3" onSubmit={onSubmit}>
+      <div className="grid col-auto">
+        <FormField
+          type="text"
+          placeholder="Email"
+          name="email"
+          register={register}
+          error={errors.email}
+          label="Email"
+          icon={<MdOutlineMail />}
+        />
+        <FormField
+          type="password"
+          placeholder="Password"
+          name="password"
+          register={register}
+          error={errors.password}
+          label="Password"
+          togglePasswordVisibility={true}
+        />
+      </div>
+      <div className="flex justify-end text-xs">
+        <Link className="text-blue-600" href="/auth/forgot-password">
+          Forgot Password?
+        </Link>
+      </div>
+      <button className="w-full" type="submit">
+        Sign In
+      </button>
+    </form>
   );
 };
 
