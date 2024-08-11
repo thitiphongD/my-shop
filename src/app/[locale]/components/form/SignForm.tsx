@@ -12,16 +12,16 @@ import { MdOutlineMail } from "react-icons/md";
 import Link from "next/link";
 import { Divider } from "antd";
 
-type SignInForm = z.infer<typeof loginUserSchema>;
+type SignInFormType = z.infer<typeof loginUserSchema>;
 
-const SignInPage = () => {
+const SignInForm = () => {
   const router = useRouter();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignInForm>({
+  } = useForm<SignInFormType>({
     resolver: zodResolver(loginUserSchema),
   });
 
@@ -78,11 +78,8 @@ const SignInPage = () => {
         </button>
         <Divider />
       </form>
-      <Link className="text-blue-600 text-sm" href="/auth/sign-up">
-        Create account.
-      </Link>
     </>
   );
 };
 
-export default SignInPage;
+export default SignInForm;

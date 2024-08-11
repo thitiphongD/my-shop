@@ -111,7 +111,7 @@ const NavBar = () => {
             </Link>
           )}
 
-          <PublicNavigationLocaleSwitcher />
+          {/* <PublicNavigationLocaleSwitcher /> */}
         </div>
       </nav>
 
