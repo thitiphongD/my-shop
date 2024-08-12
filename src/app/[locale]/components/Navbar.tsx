@@ -80,7 +80,8 @@ const NavBar = () => {
   return (
     <>
       <nav className="navbar-container">
-        <ul className="flex space-x-2">
+        <ul className="flex items-center space-x-2">
+          <Link href="/">Logo</Link>
           {links.map((link) => (
             <Link
               key={link.href}
@@ -93,9 +94,7 @@ const NavBar = () => {
             </Link>
           ))}
         </ul>
-        <Link href="/">
-          <GiFullMotorcycleHelmet />
-        </Link>
+
         <div className="flex items-center space-x-4">
           {status === "authenticated" && session?.user ? (
             <>

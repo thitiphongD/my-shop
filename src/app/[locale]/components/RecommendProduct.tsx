@@ -17,9 +17,9 @@ const productNames = [
   "Tablet",
 ];
 
-const prices = productNames.map(() =>
-  (Math.random() * (500 - 20) + 20).toFixed(2)
-);
+// const prices = productNames.map(() =>
+//   (Math.random() * (500 - 20) + 20).toFixed(2)
+// );
 
 const RecommendProduct = () => {
   const [liked, setLiked] = useState(Array(10).fill(false));
@@ -44,7 +44,7 @@ const RecommendProduct = () => {
                 onClick={() => handleLikeClick(index)}
               />
               <h3 className="text-lg font-semibold">{name}</h3>
-              <p className="text-gray-600">${prices[index]}</p>
+              <p className="text-gray-600">$400</p>
             </Card>
           </div>
         ))}
