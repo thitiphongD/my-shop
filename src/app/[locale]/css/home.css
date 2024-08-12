@@ -2,8 +2,16 @@
   @apply h-[340px] rounded-xl bg-[#364d79] text-center text-white;
 }
 
+.banner2 {
+  @apply h-[340px] rounded-xl bg-[#febd11] text-center text-white;
+}
+
+.banner3 {
+  @apply h-[340px] rounded-xl bg-[#43ccd4] text-center text-white;
+}
+
 .discount-banner {
-  @apply h-[140px] rounded-xl bg-sky-400 mt-10 p-4 flex items-center justify-between;
+  @apply h-[140px] rounded-xl bg-sky-300 mt-10 p-4 flex items-center justify-between;
 }
 
 .title-section {
