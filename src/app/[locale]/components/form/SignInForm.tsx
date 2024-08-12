@@ -10,12 +10,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import FormField from "./FormField";
 import { MdOutlineMail } from "react-icons/md";
 import Link from "next/link";
+import { Button, Modal } from "antd";
 
 type SignInFormType = z.infer<typeof loginUserSchema>;
 
 const SignInForm = () => {
   const router = useRouter();
-
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -24,8 +25,15 @@ const SignInForm = () => {
     resolver: zodResolver(loginUserSchema),
   });
 
+  const errorSignIn = () => {
+    Modal.error({
+      title: "Sign In Fail!",
+      content: "Email or Password Incorrect!",
+    });
+  };
+
   const onSubmit = handleSubmit(async (data) => {
-    console.log(data);
+    setLoading(true);
     const email = data.email;
     const password = data.password;
     try {
@@ -35,12 +43,15 @@ const SignInForm = () => {
         password,
       });
       if (result?.error) {
-        console.error("error", result?.error);
+        errorSignIn();
+        setLoading(false);
         return false;
       }
       router.push("/");
     } catch (error) {
-      console.log(error);
+      errorSignIn();
+      setLoading(false);
+      console.error(error);
     }
   });
 
@@ -71,9 +82,15 @@ const SignInForm = () => {
           Forgot Password?
         </Link>
       </div>
-      <button className="w-full auth-btn" type="submit">
+      <Button
+        className="w-full"
+        htmlType="submit"
+        type="primary"
+        loading={loading}
+        iconPosition="end"
+      >
         Sign In
-      </button>
+      </Button>
     </form>
   );
 };

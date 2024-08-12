@@ -1,0 +1,7 @@
+.banner {
+  @apply h-[340px] rounded-xl bg-[#364d79] text-center text-white;
+}
+
+.discount-banner {
+  @apply h-[140px] rounded-xl bg-[#364d79] mt-10 p-4;
+}

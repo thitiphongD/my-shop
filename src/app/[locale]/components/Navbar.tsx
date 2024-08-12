@@ -19,15 +19,23 @@ const NavBar = () => {
   const currentPath = usePathname();
   const t = useTranslations("Translate");
   const { data: session, status } = useSession();
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setIsLoading] = useState(false);
+
   const showModal = () => {
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
-    signOut({ callbackUrl: "/" });
-    setIsModalOpen(false);
+  const handleOk = async () => {
+    setIsLoading(true);
+    try {
+      await signOut({ callbackUrl: "/" });
+    } catch (error) {
+      console.error("Logout failed:", error);
+    } finally {
+      setIsLoading(false);
+      setIsModalOpen(false);
+    }
   };
 
   const handleCancel = () => {
@@ -123,7 +131,13 @@ const NavBar = () => {
           <Button key="back" onClick={handleCancel}>
             {t("back")}
           </Button>,
-          <Button key="submit" type="primary" onClick={handleOk}>
+          <Button
+            key="submit"
+            iconPosition="end"
+            loading={loading}
+            type="primary"
+            onClick={handleOk}
+          >
             {t("confirm")}
           </Button>,
         ]}
