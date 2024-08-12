@@ -3,5 +3,9 @@
 }
 
 .discount-banner {
-  @apply h-[140px] rounded-xl bg-[#364d79] mt-10 p-4;
+  @apply h-[140px] rounded-xl bg-sky-400 mt-10 p-4 flex items-center justify-between;
+}
+
+.title-section {
+  @apply mt-10 text-xl font-bold;
 }
