@@ -1,3 +1,7 @@
+.banner-container {
+  @apply relative h-[340px];
+}
+
 .banner {
   @apply h-[340px] rounded-xl bg-[#364d79] text-center text-white;
 }

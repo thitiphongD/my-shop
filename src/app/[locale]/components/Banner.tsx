@@ -1,22 +1,41 @@
 import { Carousel } from "antd";
 import React from "react";
 import "../css/home.css";
-
-// #febd11
-
-// #43ccd4
+import Image from "next/image";
 
 const Banner = () => {
   return (
     <Carousel autoplay>
-      <div>
-        <h3 className="banner">1</h3>
+      <div className="banner-container">
+        <Image
+          src="/banner-one.png"
+          alt="cover"
+          fill
+          objectFit="cover"
+          //  objectFit="contain"
+          className="rounded-xl"
+          // objectPosition="top"
+        />
       </div>
-      <div>
-        <h3 className="banner2">2</h3>
+      <div className="banner-container">
+        <Image
+          src="/banner-two.png"
+          alt="cover"
+          fill
+          objectFit="cover"
+          className="rounded-xl"
+          objectPosition="top"
+        />
       </div>
-      <div>
-        <h3 className="banner3">3</h3>
+      <div className="banner-container">
+        <Image
+          src="/banner-three.png"
+          alt="cover"
+          fill
+          objectFit="cover"
+          className="rounded-xl"
+          objectPosition="top"
+        />
       </div>
     </Carousel>
   );
